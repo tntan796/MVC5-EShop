@@ -28,6 +28,9 @@ namespace Model.Dao
             return (result > 0);
         }
 
-
+        public User GetByUserName(string userName)
+        {
+            return db.Users.SingleOrDefault(t => t.UserName == userName);
+        }
     }
 }

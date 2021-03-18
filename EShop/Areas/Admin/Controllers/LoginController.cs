@@ -1,5 +1,6 @@
 ﻿using EShop.Commons;
 using EShop.Models;
+using Model.Commons;
 using Model.Dao;
 using System;
 using System.Collections.Generic;
@@ -25,8 +26,8 @@ namespace EShop.Areas.Admin.Controllers
                 return View(login);
             }
             UserDao userDao = new UserDao();
-            bool checkLogin = userDao.Login(login.UserName, login.Password);
-            if (checkLogin)
+            int checkLogin = userDao.Login(login.UserName, Security.MD5Hash(login.Password));
+            if (checkLogin == (int)CommonConstants.LoginStatus.UserActive)
             {
                 var user = userDao.GetByUserName(login.UserName);
                 UserLogin userLogin = new UserLogin();
@@ -36,7 +37,18 @@ namespace EShop.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Home");
             } else
             {
-                ModelState.AddModelError("", "Đăng nhập thất bại!");
+                if (checkLogin == (int)CommonConstants.LoginStatus.UserNameWrong)
+                {
+                    ModelState.AddModelError("", "Sai tên tài khoản!");
+                }
+                else if (checkLogin == (int)CommonConstants.LoginStatus.PasswordWrong)
+                {
+                    ModelState.AddModelError("", "Sai mật khẩu!");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Tài khoản không hoạt động!");
+                }
             }
             return View();
         }

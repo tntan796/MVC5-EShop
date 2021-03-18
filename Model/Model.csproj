@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commons\CommonConstants.cs" />
     <Compile Include="Dao\UserDao.cs" />
     <Compile Include="EF\About.cs" />
     <Compile Include="EF\Category.cs" />

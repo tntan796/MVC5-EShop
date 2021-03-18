@@ -1,4 +1,5 @@
-﻿using Model.EF;
+﻿using Model.Commons;
+using Model.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,10 +23,28 @@ namespace Model.Dao
             return user.ID;
         }
 
-        public bool Login(string userName, string password)
+        public int Login(string userName, string password)
         {
-            var result = db.Users.Count(t => t.UserName == userName && t.Password == password);
-            return (result > 0);
+            User user = db.Users.SingleOrDefault(t => t.UserName == userName);
+            if (user == null)
+            {
+                return (int)CommonConstants.LoginStatus.UserNameWrong;
+            } else
+            {
+                if (user.Password == password)
+                {
+                    if (user.Status == false)
+                    {
+                        return (int)CommonConstants.LoginStatus.UserInActive;
+                    } else
+                    {
+                        return (int)CommonConstants.LoginStatus.UserActive;
+                    }
+                } else
+                {
+                    return (int)CommonConstants.LoginStatus.PasswordWrong;
+                }
+            }
         }
 
         public User GetByUserName(string userName)

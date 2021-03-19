@@ -92,25 +92,3 @@
         </div>
     </div>
 </div>
-
-
-
-@*@section scripts {
-    <script>
-        $("#btn-search").on("click", function () {
-            $.ajax({
-                url: "/admin/user/index",
-                type: "get",
-                data: {
-                    keyword: $("#txtkeyword").val()
-                },
-                success: function (response) {
-
-                },
-                error: function (error) {
-                    console.log('Search error: ', error);
-                }
-            });
-        })
-    </script>
-}*@

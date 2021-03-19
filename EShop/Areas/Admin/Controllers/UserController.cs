@@ -95,8 +95,8 @@ namespace EShop.Areas.Admin.Controllers
                 return View(user);
             }
             user.ModifiedBy = (Session[Contants.USER_SESSION] as UserLogin).UserID.ToString();
-            CommonConstants.UserStatus result = userDao.Update(user);
-            if (result == CommonConstants.UserStatus.UpdateSuccess)
+            string result = userDao.Update(user);
+            if (result == COMMON_CONSTANTS.EDIT_SUCCESS)
             {
                 return View(user);
             }

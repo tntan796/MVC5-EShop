@@ -59,26 +59,26 @@ namespace Model.Dao
             }
         }
 
-        public CommonConstants.LoginStatus Login(string userName, string password)
+        public string Login(string userName, string password)
         {
             User user = db.Users.SingleOrDefault(t => t.UserName == userName);
             if (user == null)
             {
-                return CommonConstants.LoginStatus.UserNameWrong;
+                return COMMON_CONSTANTS.LOGIN_USER_NAME_FAIL;
             } else
             {
                 if (user.Password == password)
                 {
                     if (user.Status == false)
                     {
-                        return CommonConstants.LoginStatus.UserInActive;
+                        return COMMON_CONSTANTS.USER_INACTIVE;
                     } else
                     {
-                        return CommonConstants.LoginStatus.UserActive;
+                        return COMMON_CONSTANTS.USER_ACTIVE;
                     }
                 } else
                 {
-                    return CommonConstants.LoginStatus.PasswordWrong;
+                    return COMMON_CONSTANTS.LOGIN_PASSWORD_FAIL;
                 }
             }
         }
@@ -93,17 +93,17 @@ namespace Model.Dao
             return db.Users.SingleOrDefault(t => t.ID == id);
         }
 
-        public CommonConstants.UserStatus Update(User user)
+        public string Update(User user)
         {
             User userUpdate = db.Users.SingleOrDefault(t => t.ID == user.ID);
             int checkDuplicateUserName = db.Users.Count(t => t.UserName == user.UserName && t.ID != user.ID);
             if (userUpdate == null)
             {
-                return CommonConstants.UserStatus.UpdateFail;
+                return COMMON_CONSTANTS.EDIT_FAIL;
             }
             if (checkDuplicateUserName > 0)
             {
-                return CommonConstants.UserStatus.DupplicateUserName;
+                return COMMON_CONSTANTS.DUPPLICATE_USER_NAME;
             }
             userUpdate.UserName = user.UserName;
             userUpdate.Password = user.Password;
@@ -117,7 +117,7 @@ namespace Model.Dao
             userUpdate.CreatedDate = user.CreatedDate;
             userUpdate.CreatedBy = user.CreatedBy;
             db.SaveChanges();
-            return CommonConstants.UserStatus.UpdateSuccess;
+            return COMMON_CONSTANTS.EDIT_SUCCESS;
         }
     }
 }

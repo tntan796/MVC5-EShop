@@ -21,9 +21,9 @@ namespace EShop.Areas.Admin.Controllers
             userDao = new UserDao();
         }
         // GET: Admin/User
-        public ActionResult Index(int page = 1, int pageSize = 5)
+        public ActionResult Index(string keyword = "", int page = 1, int pageSize = 5)
         {
-            IPagedList<User> users = userDao.GetUsersPaging(page, pageSize);
+            IPagedList<User> users = userDao.GetUsersPaging(keyword, page, pageSize);
             return View(users);
         }
 

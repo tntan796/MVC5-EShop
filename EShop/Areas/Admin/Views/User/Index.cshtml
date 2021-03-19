@@ -10,7 +10,9 @@
 @section styles {
     <link href="~/assets/admin/css/custom-paging-styles.css" rel="stylesheet" />
 }
-
+@section searchForm {
+    @Html.Partial("_SearchForm", "/admin/user/index")
+}
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -31,6 +33,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -90,3 +93,24 @@
     </div>
 </div>
 
+
+
+@*@section scripts {
+    <script>
+        $("#btn-search").on("click", function () {
+            $.ajax({
+                url: "/admin/user/index",
+                type: "get",
+                data: {
+                    keyword: $("#txtkeyword").val()
+                },
+                success: function (response) {
+
+                },
+                error: function (error) {
+                    console.log('Search error: ', error);
+                }
+            });
+        })
+    </script>
+}*@

@@ -24,9 +24,18 @@ namespace Model.Dao
             return db.Users.ToList();
         }
 
-        public IPagedList<User> GetUsersPaging(int pageNum, int pageSize)
+        public IPagedList<User> GetUsersPaging(string keyword, int pageNum, int pageSize)
         {
-            return db.Users.OrderBy(t => t.CreatedDate).ToPagedList(pageNum, pageSize);
+            IOrderedQueryable<User> query = db.Users;
+            if (!String.IsNullOrEmpty(keyword))
+            {
+                query = query.Where(t => t.UserName.Contains(keyword) || t.Name.Contains(keyword))
+                    .OrderBy(t => t.CreatedDate);
+            } else
+            {
+                query = query.OrderBy(t => t.CreatedDate);
+            }
+            return query.ToPagedList(pageNum, pageSize);
         }
 
         public long Insert(User user)

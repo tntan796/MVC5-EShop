@@ -26,8 +26,8 @@ namespace EShop.Areas.Admin.Controllers
                 return View(login);
             }
             UserDao userDao = new UserDao();
-            int checkLogin = userDao.Login(login.UserName, Security.MD5Hash(login.Password));
-            if (checkLogin == (int)CommonConstants.LoginStatus.UserActive)
+            CommonConstants.LoginStatus checkLogin = userDao.Login(login.UserName, Security.MD5Hash(login.Password));
+            if (checkLogin == CommonConstants.LoginStatus.UserActive)
             {
                 var user = userDao.GetByUserName(login.UserName);
                 UserLogin userLogin = new UserLogin();
@@ -37,11 +37,11 @@ namespace EShop.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Home");
             } else
             {
-                if (checkLogin == (int)CommonConstants.LoginStatus.UserNameWrong)
+                if (checkLogin == CommonConstants.LoginStatus.UserNameWrong)
                 {
                     ModelState.AddModelError("", "Sai tên tài khoản!");
                 }
-                else if (checkLogin == (int)CommonConstants.LoginStatus.PasswordWrong)
+                else if (checkLogin == CommonConstants.LoginStatus.PasswordWrong)
                 {
                     ModelState.AddModelError("", "Sai mật khẩu!");
                 }

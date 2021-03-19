@@ -15,5 +15,15 @@ namespace Model.Commons
             PasswordWrong = 1,
             UserActive = 2
         }
+        public enum UserStatus
+        {
+            AddSusscess,
+            AddWrong,
+            DupplicateUserName,
+            UpdateSuccess,
+            UpdateFail,
+            DeleteSuccess,
+            DeleteFail
+        }
     }
 }

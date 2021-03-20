@@ -1,0 +1,202 @@
+﻿@model Model.EF.Content
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section styles {
+    <link href="~/assets/admin/css/custom-toggle-button.css" rel="stylesheet" />
+}
+
+
+@section scripts {
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#detail'))
+            .then(editor => {
+                editor.model.document.on('change', () => {
+                    console.log('The Document has changed!');
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+}
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index", "Home")">Trang chủ</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index", "Content")">Nội dung</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Thêm mới</li>
+    </ol>
+</nav>
+
+
+
+<div class="row">
+    <div class="col-sm-12 col-md-6 form-group ">
+        <label>Tên bài viết <span class="text-danger"> *</span></label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-white">
+                    <i class="fas fa-user text-primary"></i>
+                </span>
+            </div>
+            <input type="text" class="form-control" name="Name" placeholder="Tên bài viết" disabled value="@Model.Name">
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 form-group ">
+        <label>Meta tiêu đề <span class="text-danger"> *</span></label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-white">
+                    <i class="fas fa-user text-primary"></i>
+                </span>
+            </div>
+            <input type="text" class="form-control" name="MetaTitle" placeholder="Meta tiêu đề" disabled value="@Model.MetaTitle">
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 form-group ">
+        <label>Hình ảnh <span class="text-danger"> *</span></label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-white">
+                    <i class="fas fa-user text-primary"></i>
+                </span>
+            </div>
+            <input type="text" class="form-control" name="Image" placeholder="Hình ảnh" disabled value="@Model.Image">
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 form-group ">
+        <label>Danh mục<span class="text-danger"> *</span></label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-white">
+                    <i class="fas fa-user text-primary"></i>
+                </span>
+            </div>
+            <input type="text" class="form-control" name="CategoryID" placeholder="Danh mục" disabled value="@Model.CategoryID">
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 form-group ">
+        <label>Mô tả <span class="text-danger"> *</span></label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-white">
+                    <i class="fas fa-user text-primary"></i>
+                </span>
+            </div>
+            <input type="text" class="form-control" name="Description" placeholder="Mô tả" disabled value="@Model.Description">
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6 form-group ">
+        <label>Bảo hành<span class="text-danger"> *</span></label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-white">
+                    <i class="fas fa-user text-primary"></i>
+                </span>
+            </div>
+            <input type="text" class="form-control" name="Warranty" placeholder="Bảo hành" disabled value="@Model.Warranty">
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6 form-group ">
+        <label>Meta keyword</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-white">
+                    <i class="fas fa-user-edit text-primary"></i>
+                </span>
+            </div>
+            <input type="text" class="form-control" placeholder="Meta keyword" name="MetaKeywords" disabled value="@Model.MetaKeywords">
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6 form-group ">
+        <label>Tags</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-white">
+                    <i class="fas fa-user-edit text-primary"></i>
+                </span>
+            </div>
+            <input type="text" class="form-control" placeholder="Tags" name="Tags" disabled value="@Model.Tags">
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 form-group ">
+        <label>Ngày tạo</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-white">
+                    <i class="fas fa-calendar-alt text-primary"></i>
+                </span>
+            </div>
+            <input type="date" class="form-control" name="CreatedDate" placeholder="Ngày tạo" disabled value="@Model.CreatedDate">
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 form-group ">
+        <label>Người tạo</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-white">
+                    <i class="fas fa-user-plus text-primary"></i>
+                </span>
+            </div>
+            <input type="text" class="form-control" name="CreatedBy" placeholder="Người tạo" value="@Model.CreatedBy">
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 form-group ">
+        <label>Ngày sửa</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-white">
+                    <i class="far fa-calendar-check text-primary"></i>
+                </span>
+            </div>
+            <input type="date" class="form-control" name="ModifiedDate" placeholder="Ngày sửa" value="@Model.ModifiedDate">
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 form-group ">
+        <label>Người sửa</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-white">
+                    <i class="fas fa-user-edit text-primary"></i>
+                </span>
+            </div>
+            <input type="text" class="form-control" placeholder="Người sửa" name="ModifiedBy" value="@Model.ModifiedBy">
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-6 form-group ">
+        <label>Trạng thái</label> <br />
+        <label class="switch">
+            <input type="checkbox" name="Status" disabled>
+            <span class="slider round"></span>
+        </label>
+    </div>
+    <div class="col-sm-6 col-md-6 form-group ">
+        <label>Bài nổi bật</label> <br />
+        <label class="switch">
+            <input type="checkbox" name="TopHot" disabled>
+            <span class="slider round"></span>
+        </label>
+    </div>
+    <div class="col-sm-12 col-md-12 form-group ">
+        <label>Chi tiết<span class="text-danger"> *</span></label>
+        <textarea id="detail" name="Detail" class="w-100" rows="10"  value="@Model.Detail"></textarea>
+    </div>
+    <div class="col-sm-12 form-group text-right">
+        <a type="button" class="btn btn-secondary" href="@Url.Action("Index", "Content")">
+            <i class="fas fa-backward"></i> Quay lại
+        </a>
+    </div>
+</div>

@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace EShop.Areas.Admin.Controllers
 {
-    public class CategoryController : Controller
+    public class CategoryController : BaseController
     {
         CategoryDao categoryDao = null;
         public CategoryController()

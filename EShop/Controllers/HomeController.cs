@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Model.Dao;
+using Model.EF;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,23 +10,22 @@ namespace EShop.Controllers
 {
     public class HomeController : Controller
     {
+        MenuDao menuDao = null;
+        public HomeController()
+        {
+            menuDao = new MenuDao();
+        }
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        // GET: Menu
+        [ChildActionOnly]
+        public ActionResult TopMenu()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            IEnumerable<Menu> menus = menuDao.GetByTypeId(1);
+            return View(menus);
         }
     }
 }

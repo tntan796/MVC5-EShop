@@ -1,42 +1,63 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE HTML>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <title>Free Home Shoppe Website Template | Home :: w3layouts</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="~/assets/client/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/assets/client/css/slider.css" rel="stylesheet" type="text/css" media="all" />
+    @RenderSection("styles", required: false)
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <div class="wrap">
+        <div class="header">
+            <div class="headertop_desc">
+                <div class="call">
+                    <p><span>Need help?</span> call us <span class="number">1-22-3456789</span></p>
+                </div>
+                <div class="account_desc">
+                    <ul>
+                        <li><a href="#">Register</a></li>
+                        <li><a href="#">Checkout</a></li>
+                        <li><a href="#">My Account</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+            <div class="header_top">
+                <div class="logo">
+                    <a href="index.html"><img src="~/assets/client/images/logo.png" alt="" /></a>
+                </div>
+                <div class="cart">
+                    <p>
+                        Welcome to our Online Store! <span>Cart:</span>
+                        <div id="dd" class="wrapper-dropdown-2">
+                            0 item(s) - $0.00
+                            <ul class="dropdown">
+                                <li>you have no items in your Shopping cart</li>
+                            </ul>
+                        </div>
+                    </p>
+                </div>
+                <div class="clear"></div>
+            </div>
+            @{ Html.RenderAction("TopMenu", "Home"); }
+            <div class="header_slide">
+                @Html.Partial("_BottomMenuPartial")
+                @Html.Partial("_SlidePartial")
+                <div class="clear"></div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
+    @Html.Partial("_FooterPartial")
+    <a href="#" id="toTop"><span id="toTopHover"> </span></a>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript" src="~/assets/client/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="~/assets/client/js/move-top.js"></script>
+    <script type="text/javascript" src="~/assets/client/js/easing.js"></script>
+    <script type="text/javascript" src="~/assets/client/js/startstop-slider.js"></script>
+    <script src="~/assets/client/js/main.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
+

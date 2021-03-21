@@ -93,6 +93,26 @@ namespace Model.Dao
             return db.Users.SingleOrDefault(t => t.ID == id);
         }
 
+        public string ChangeStatusAjax(long id)
+        {
+            User user = db.Users.SingleOrDefault(t => t.ID == id);
+            if (user == null)
+            {
+                return COMMON_CONSTANTS.NOT_EXISTS;
+            }
+            if (user.Status != null)
+            {
+                user.Status = !user.Status;
+            } else
+            {
+                user.Status = true;
+            }
+            int result = db.SaveChanges();
+            if (result > 0)
+                return COMMON_CONSTANTS.EDIT_SUCCESS;
+            return COMMON_CONSTANTS.EDIT_FAIL;
+        }
+
         public string Update(User user)
         {
             User userUpdate = db.Users.SingleOrDefault(t => t.ID == user.ID);

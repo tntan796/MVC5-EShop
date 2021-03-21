@@ -19,7 +19,7 @@
     </ol>
 </nav>
 
-<div class="row">
+<div class="row bg-white shadow p-2">
     <div class="col-sm-12 col-md-6 form-group ">
         <label>Tài khoản <span class="text-danger"> *</span></label>
         <div class="input-group">
@@ -74,7 +74,7 @@
                 </span>
             </div>
             <input type="date" class="form-control" name="CreatedDate" placeholder="Ngày tạo" disabled
-                   value="@(Model.CreatedDate.HasValue ? Model.CreatedDate.Value.ToString("yyyy-MM-dd") : null)"
+                   value="@(Model.CreatedDate.HasValue ? Model.CreatedDate.Value.ToString("yyyy-MM-dd") : null)" />
         </div>
     </div>
     <div class="col-sm-12 col-md-6 form-group ">
@@ -85,7 +85,7 @@
                     <i class="fas fa-user-plus text-primary"></i>
                 </span>
             </div>
-            <input type="text" class="form-control" name="CreatedBy" placeholder="Người tạo"value="@Model.CreatedBy">
+            <input type="text" class="form-control" name="CreatedBy" placeholder="Người tạo" value="@Model.CreatedBy">
         </div>
     </div>
     <div class="col-sm-12 col-md-6 form-group ">
@@ -97,7 +97,7 @@
                 </span>
             </div>
             <input type="date" class="form-control" name="ModifiedDate" placeholder="Ngày sửa"
-                   value="@(Model.ModifiedDate.HasValue ? Model.ModifiedDate.Value.ToString("yyyy-MM-dd") : null)"
+                   value="@(Model.ModifiedDate.HasValue ? Model.ModifiedDate.Value.ToString("yyyy-MM-dd") : null)" />
         </div>
     </div>
     <div class="col-sm-12 col-md-6 form-group ">
@@ -112,14 +112,6 @@
         </div>
     </div>
     <div class="col-sm-12 col-md-6 form-group ">
-        <label>Trạng thái</label> <br />
-        <label class="switch">
-            <input type="checkbox" name="Status" value="@Model.Status" checked="@Model.Status">
-            <span class="slider round"></span>
-        </label>
-    </div>
-
-    <div class="col-sm-12 col-md-6 form-group ">
         <label>Từ khóa Meta</label>
         <div class="input-group">
             <div class="input-group-prepend">
@@ -129,6 +121,13 @@
             </div>
             <input type="text" class="form-control" placeholder="Từ khóa Meta" name="MetaKeywords" value="@Model.MetaKeywords">
         </div>
+    </div>
+    <div class="col-sm-12 col-md-6 form-group ">
+        <label>Trạng thái</label> <br />
+        <label class="switch">
+            <input type="checkbox" name="Status" value="@Model.Status" checked="@Model.Status">
+            <span class="slider round"></span>
+        </label>
     </div>
     <div class="col-sm-12 form-group text-right">
         <a type="button" class="btn btn-secondary" href="@Url.Action("Index", "User")">

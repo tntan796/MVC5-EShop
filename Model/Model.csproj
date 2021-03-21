@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commons\CommonConstants.cs" />
+    <Compile Include="Commons\ResponseFormat.cs" />
     <Compile Include="Dao\CategoryDao.cs" />
     <Compile Include="Dao\ContentDao.cs" />
     <Compile Include="Dao\UserDao.cs" />

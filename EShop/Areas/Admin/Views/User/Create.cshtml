@@ -96,55 +96,6 @@
             </div>
             @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
         </div>
-        @*<div class="col-sm-12 col-md-6 form-group ">
-                <label>Ngày tạo</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text bg-white">
-                            <i class="fas fa-calendar-alt text-primary"></i>
-                        </span>
-                    </div>
-                    <input type="date" class="form-control" name="CreatedDate" placeholder="Ngày tạo" aria-label="CreatedDate">
-                </div>
-                @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
-            </div>
-            <div class="col-sm-12 col-md-6 form-group ">
-                <label>Người tạo</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text bg-white">
-                            <i class="fas fa-user-plus text-primary"></i>
-                        </span>
-                    </div>
-                    <input type="text" class="form-control" name="CreatedBy" placeholder="Người tạo" aria-label="CreatedBy">
-                </div>
-                @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
-            </div>
-            <div class="col-sm-12 col-md-6 form-group ">
-                <label>Ngày sửa</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text bg-white">
-                            <i class="far fa-calendar-check text-primary"></i>
-                        </span>
-                    </div>
-                    <input type="date" class="form-control" name="ModifiedDate" placeholder="Ngày sửa" aria-label="ModifiedDate">
-                </div>
-                @Html.ValidationMessageFor(model => model.ModifiedDate, "", new { @class = "text-danger" })
-            </div>
-            <div class="col-sm-12 col-md-6 form-group ">
-                <label>Người sửa</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text bg-white">
-                            <i class="fas fa-user-edit text-primary"></i>
-                        </span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Người sửa" name="ModifiedBy" aria-label="ModifiedBy">
-                </div>
-                @Html.ValidationMessageFor(model => model.ModifiedBy, "", new { @class = "text-danger" })
-            </div>
-        *@
         <div class="col-sm-12 col-md-6 form-group ">
             <label>Trạng thái</label> <br />
             <label class="switch">

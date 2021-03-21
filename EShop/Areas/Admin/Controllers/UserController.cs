@@ -105,5 +105,18 @@ namespace EShop.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Error");
             }
         }
+        public JsonResult ChangeStatusAjax(long id)
+        {
+            string result = userDao.ChangeStatusAjax(id);
+            if (result == COMMON_CONSTANTS.NOT_EXISTS)
+            {
+                return Json(new ResponseFormat() { Status = 404, Message = "User not exists" }, JsonRequestBehavior.AllowGet);
+            }
+            if (result == COMMON_CONSTANTS.EDIT_FAIL)
+            {
+                return Json(new ResponseFormat() { Status = 500, Message = "Change status fail" }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new ResponseFormat() { Status = 200}, JsonRequestBehavior.AllowGet);
+        }
     }
 }

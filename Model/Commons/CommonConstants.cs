@@ -17,6 +17,5 @@
         public static string DUPPLICATE_USER_NAME = "Dupplicate user name";
         public static string USER_INACTIVE = "User InActive";
         public static string USER_ACTIVE = "User Active";
-
     }
 }

@@ -1,160 +1,207 @@
-﻿@model Model.EF.Content
+﻿@using Model.EF  
+@model Content
 
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+@section styles {
+    <link href="~/assets/admin/css/custom-toggle-button.css" rel="stylesheet" />
+}
 
-<h2>Edit</h2>
 
-@using (Html.BeginForm())
-{
+@section scripts {
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#detail'))
+            .then(editor => {
+                editor.model.document.on('change', () => {
+                    console.log('The Document has changed!');
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+}
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index", "Home")">Trang chủ</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index", "Content")">Nội dung</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Thêm mới</li>
+    </ol>
+</nav>
+
+<form action="/admin/content/edit" method="post">
+    @Html.HiddenFor(model => model.ID)
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Content</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ID)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="col-sm-12 col-md-6 form-group ">
+            <label>Tên bài viết <span class="text-danger"> *</span></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white">
+                        <i class="fas fa-user text-primary"></i>
+                    </span>
+                </div>
+                <input type="text" class="form-control" name="Name" placeholder="Tên bài viết" value="@Model.Name">
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MetaTitle, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MetaTitle, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="col-sm-12 col-md-6 form-group ">
+            <label>Meta tiêu đề <span class="text-danger"> *</span></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white">
+                        <i class="fas fa-user text-primary"></i>
+                    </span>
+                </div>
+                <input type="text" class="form-control" name="MetaTitle" placeholder="Meta tiêu đề" value="@Model.MetaTitle">
                 @Html.ValidationMessageFor(model => model.MetaTitle, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="col-sm-12 col-md-6 form-group ">
+            <label>Hình ảnh <span class="text-danger"> *</span></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white">
+                        <i class="fas fa-user text-primary"></i>
+                    </span>
+                </div>
+                <input type="text" class="form-control" name="Image" placeholder="Hình ảnh" value="@Model.Image">
+                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 form-group ">
+            <label>Danh mục<span class="text-danger"> *</span></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white">
+                        <i class="fas fa-user text-primary"></i>
+                    </span>
+                </div>
+                <select class="form-control" name="CategoryID">
+                    <option value=null>Chọn Danh mục</option>
+                    @foreach (Category category in (ViewBag.Categories as List<Category>))
+                    {
+                        <option value="@category.ID" @(category.ID == Model.CategoryID ? "selected" : "")>@category.Name</option>
+                    }
+                </select>
+                @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 form-group ">
+            <label>Mô tả <span class="text-danger"> *</span></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white">
+                        <i class="fas fa-user text-primary"></i>
+                    </span>
+                </div>
+                <input type="text" class="form-control" name="Description" placeholder="Mô tả" value="@Model.Description">
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CategoryID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CategoryID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Detail, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Detail, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Detail, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Warranty, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Warranty, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="col-sm-12 col-md-6 form-group ">
+            <label>Bảo hành<span class="text-danger"> *</span></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white">
+                        <i class="fas fa-user text-primary"></i>
+                    </span>
+                </div>
+                <input type="text" class="form-control" name="Warranty" placeholder="Bảo hành" value="@Model.Warranty">
                 @Html.ValidationMessageFor(model => model.Warranty, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreatedBy, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CreatedBy, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ModifiedDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ModifiedDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ModifiedDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ModifiedBy, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ModifiedBy, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ModifiedBy, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MetaKeywords, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MetaKeywords, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="col-sm-12 col-md-6 form-group ">
+            <label>Meta keyword</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white">
+                        <i class="fas fa-user-edit text-primary"></i>
+                    </span>
+                </div>
+                <input type="text" class="form-control" placeholder="Meta keyword" name="MetaKeywords" value="@Model.MetaKeywords">
                 @Html.ValidationMessageFor(model => model.MetaKeywords, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Status)
-                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+        <div class="col-sm-12 col-md-6 form-group ">
+            <label>Tags</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white">
+                        <i class="fas fa-user-edit text-primary"></i>
+                    </span>
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TopHot, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TopHot, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TopHot, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ViewCount, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ViewCount, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ViewCount, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Tags, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Tags, new { htmlAttributes = new { @class = "form-control" } })
+                <input type="text" class="form-control" placeholder="Tags" name="Tags" value="@Model.Tags">
                 @Html.ValidationMessageFor(model => model.Tags, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+        <div class="col-sm-12 col-md-6 form-group ">
+            <label>Ngày tạo </label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white">
+                        <i class="fas fa-calendar-alt text-primary"></i>
+                    </span>
+                </div>
+                <input type="date" class="form-control" name="CreatedDate" placeholder="Ngày tạo"
+                       value="@(Model.CreatedDate.HasValue ? Model.CreatedDate.Value.ToString("yyyy-MM-dd") : null)">
             </div>
         </div>
+        <div class="col-sm-12 col-md-6 form-group ">
+            <label>Người tạo</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white">
+                        <i class="fas fa-user-plus text-primary"></i>
+                    </span>
+                </div>
+                <input type="text" class="form-control" name="CreatedBy" placeholder="Người tạo" value="@Model.CreatedBy">
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-6 form-group ">
+            <label>Trạng thái</label> <br />
+            <label class="switch">
+                <input type="checkbox" name="Status" checked="@Model.Status" value="true">
+                <span class="slider round"></span>
+            </label>
+            <input name="Status" type="hidden" value="false" />
+        </div>
+        
+        <div class="col-sm-12 col-md-6 form-group ">
+            <label>Ngày hiển thị trang chủ</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white">
+                        <i class="fas fa-calendar-alt text-primary"></i>
+                    </span>
+                </div>
+                <input type="date" class="form-control" name="TopHot" placeholder="Ngày hiển thị trang chủ"
+                       value="@(Model.TopHot.HasValue ? Model.TopHot.Value.ToString("yyyy-MM-dd") : null)">
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 form-group ">
+            <label>Chi tiết<span class="text-danger"> *</span></label>
+            <textarea id="detail" name="Detail" class="w-100" rows="10" value="@Model.Detail">@Model.Detail</textarea>
+            @Html.ValidationMessageFor(model => model.Detail, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-sm-12 form-group text-right">
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Lưu lại</button>
+            <a type="button" class="btn btn-secondary" href="@Url.Action("Index", "Content")">
+                <i class="fas fa-backward"></i> Quay lại
+            </a>
+        </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+</form>

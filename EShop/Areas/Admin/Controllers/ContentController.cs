@@ -1,4 +1,5 @@
-﻿using Model.Commons;
+﻿using EShop.Commons;
+using Model.Commons;
 using Model.Dao;
 using Model.EF;
 using PagedList;
@@ -12,10 +13,13 @@ namespace EShop.Areas.Admin.Controllers
 {
     public class ContentController : BaseController
     {
+        CategoryDao categoryDao = null;
         ContentDao contentDao = null;
+
         public ContentController()
         {
             contentDao = new ContentDao();
+            categoryDao = new CategoryDao();
         }
 
         // GET: Admin/Content
@@ -27,6 +31,7 @@ namespace EShop.Areas.Admin.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.Categories = categoryDao.GetAll();
             return View();
         }
 
@@ -34,14 +39,17 @@ namespace EShop.Areas.Admin.Controllers
         [ValidateInput(false)]
         public ActionResult Create(Content content)
         {
+            ViewBag.Categories = categoryDao.GetAll();
             if (!ModelState.IsValid)
             {
                 return View(content);
             }
+            content.CreatedDate = DateTime.Now;
+            content.CreatedBy = (Session[Contants.USER_SESSION] as UserLogin).UserID.ToString();
             string result = contentDao.Add(content);
             if (result == COMMON_CONSTANTS.ADD_SUCCESS)
             {
-                return View("Index", "Content");
+                return RedirectToAction("Index", "Content");
             }
             else
             {
@@ -51,7 +59,9 @@ namespace EShop.Areas.Admin.Controllers
 
         public ActionResult Edit(long id)
         {
+            ViewBag.Categories = categoryDao.GetAll();
             Content content = contentDao.GetByID(id);
+            var t = content.TopHot.HasValue ? content.TopHot.Value.ToString("yyyy-MM-dd") : null;
             if (content == null)
             {
                 return RedirectToAction("Index", "Error");
@@ -60,16 +70,20 @@ namespace EShop.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Edit(Content content)
         {
-            if(!ModelState.IsValid)
+            ViewBag.Categories = categoryDao.GetAll();
+            if (!ModelState.IsValid)
             {
                 return View(content);
             }
+            content.ModifiedBy = (Session[Contants.USER_SESSION] as UserLogin).UserID.ToString();
+            content.ModifiedDate = DateTime.Now;
             string result = contentDao.Edit(content);
             if (result == COMMON_CONSTANTS.EDIT_SUCCESS)
             {
-                return View("Index", "Content");
+                return RedirectToAction("Index", "Content");
             }
             else
             {
@@ -79,6 +93,7 @@ namespace EShop.Areas.Admin.Controllers
 
         public ActionResult Detail(long id)
         {
+            ViewBag.Categories = categoryDao.GetAll();
             Content content = contentDao.GetByID(id);
             return View(content);
         }
@@ -88,13 +103,12 @@ namespace EShop.Areas.Admin.Controllers
             string result = contentDao.Delete(id);
             if (result == COMMON_CONSTANTS.DELETE_SUCCESS)
             {
-                return View("Index", "Content");
+                return RedirectToAction("Index", "Content");
             }
             else
             {
                 return RedirectToAction("Index", "Error");
             }
-            return View();
         }
     }
 }

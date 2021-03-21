@@ -1,4 +1,5 @@
-﻿@model Model.EF.Content
+﻿@using Model.EF
+@model Content
 
 @{
     ViewBag.Title = "Create";
@@ -88,7 +89,12 @@
                         <i class="fas fa-user text-primary"></i>
                     </span>
                 </div>
-                <input type="text" class="form-control" name="CategoryID" placeholder="Danh mục">
+                <select class="form-control" name="CategoryID">
+                    @foreach (Category category in (ViewBag.Categories as List<Category>))
+                    {
+                        <option value="@category.ID">@category.Name</option>
+                    }
+                </select>
             </div>
             @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
         </div>
@@ -117,7 +123,7 @@
             </div>
             @Html.ValidationMessageFor(model => model.Warranty, "", new { @class = "text-danger" })
         </div>
-  
+
         <div class="col-sm-12 col-md-6 form-group ">
             <label>Meta keyword</label>
             <div class="input-group">
@@ -130,7 +136,7 @@
             </div>
             @Html.ValidationMessageFor(model => model.MetaKeywords, "", new { @class = "text-danger" })
         </div>
-     
+
         <div class="col-sm-12 col-md-6 form-group ">
             <label>Tags</label>
             <div class="input-group">
@@ -143,21 +149,26 @@
             </div>
             @Html.ValidationMessageFor(model => model.Tags, "", new { @class = "text-danger" })
         </div>
+        <div class="col-sm-12 col-md-6 form-group ">
+            <label>Ngày hiển thị trang chủ</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white">
+                        <i class="fas fa-calendar-alt text-primary"></i>
+                    </span>
+                </div>
+                <input type="date" class="form-control" name="TopHot" placeholder="Ngày hiển thị trang chủ"
+                       value="@(Model.TopHot.HasValue ? Model.TopHot.Value.ToString("yyyy-MM-dd") : null)">
+            </div>
+        </div>
         <div class="col-sm-6 col-md-6 form-group ">
             <label>Trạng thái</label> <br />
             <label class="switch">
-                <input type="checkbox" name="Status">
+                <input type="checkbox" name="Status" value="true">
                 <span class="slider round"></span>
             </label>
+            <input type="hidden" name="Status" value="false">
             @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-        </div>
-        <div class="col-sm-6 col-md-6 form-group ">
-            <label>Bài nổi bật</label> <br />
-            <label class="switch">
-                <input type="checkbox" name="TopHot">
-                <span class="slider round"></span>
-            </label>
-            @Html.ValidationMessageFor(model => model.TopHot, "", new { @class = "text-danger" })
         </div>
         <div class="col-sm-12 col-md-12 form-group ">
             <label>Chi tiết<span class="text-danger"> *</span></label>

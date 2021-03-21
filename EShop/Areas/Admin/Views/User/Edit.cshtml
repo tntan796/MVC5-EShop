@@ -95,7 +95,8 @@
                         <i class="fas fa-calendar-alt text-primary"></i>
                     </span>
                 </div>
-                <input type="date" class="form-control" name="CreatedDate" placeholder="Ngày tạo" value="@Model.CreatedDate">
+                <input type="date" class="form-control" name="CreatedDate" placeholder="Ngày tạo"
+                       value="@(Model.CreatedDate.HasValue ? Model.CreatedDate.Value.ToString("yyyy-MM-dd") : null)"
             </div>
         </div>
         <div class="col-sm-12 col-md-6 form-group ">
@@ -117,7 +118,8 @@
                         <i class="far fa-calendar-check text-primary"></i>
                     </span>
                 </div>
-                <input type="date" class="form-control" name="ModifiedDate" placeholder="Ngày sửa" value="@Model.ModifiedDate">
+                <input type="date" class="form-control" name="ModifiedDate" placeholder="Ngày sửa"
+                       value="@(Model.ModifiedDate.HasValue ? Model.ModifiedDate.Value.ToString("yyyy-MM-dd") : null)"
             </div>
         </div>
         <div class="col-sm-12 col-md-6 form-group ">
@@ -134,9 +136,10 @@
         <div class="col-sm-12 col-md-6 form-group ">
             <label>Trạng thái</label> <br />
             <label class="switch">
-                <input type="checkbox" name="Status" value="@Model.Status" checked="@Model.Status">
+                <input type="checkbox" name="Status" value="true" checked="@Model.Status">
                 <span class="slider round"></span>
             </label>
+            <input name="Status" type="hidden" value="false" />
         </div>
 
         <div class="col-sm-12 col-md-6 form-group ">

@@ -1,4 +1,4 @@
-﻿@using PagedList.Mvc 
+﻿@using PagedList.Mvc
 @model PagedList.IPagedList<Model.EF.Content>
 
 @{
@@ -42,6 +42,7 @@
                         <th> Name</th>
                         <th> MetaTitle</th>
                         <th> Description </th>
+                        <th> Category </th>
                         <th> Image </th>
                         <th> Detail </th>
                         <th> Warranty </th>
@@ -75,6 +76,7 @@
                                     <td> @item.Name</td>
                                     <td> @item.MetaTitle</td>
                                     <td> @item.Description</td>
+                                    <td> @item.CategoryID</td>
                                     <td> @item.Image</td>
                                     <td> @item.Detail</td>
                                     <td> @item.Warranty</td>

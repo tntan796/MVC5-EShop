@@ -28,7 +28,7 @@
         <li class="breadcrumb-item active" aria-current="page">Thêm mới</li>
     </ol>
 </nav>
-<form action="/admin/user/create" method="post" class="bg-white p-3 shadow" style="border-radius: 1rem;">
+<form action="/admin/category/create" method="post" class="bg-white p-3 shadow" style="border-radius: 1rem;">
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="row">
@@ -107,17 +107,19 @@
         <div class="col-sm-12 col-md-6 form-group ">
             <label>Trạng thái</label> <br />
             <label class="switch">
-                <input type="checkbox" name="Status">
+                <input type="checkbox" name="Status" value="true">
                 <span class="slider round"></span>
             </label>
+            <input name="Status" type="hidden" value="false" />
             @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
         </div>
         <div class="col-sm-12 col-md-6 form-group ">
             <label>Hiển thị trang chủ</label> <br />
             <label class="switch">
-                <input type="checkbox" name="Status">
+                <input type="checkbox" name="ShowOnHome" value="true">
                 <span class="slider round"></span>
             </label>
+            <input name="ShowOnHome" type="hidden" value="false" />
             @Html.ValidationMessageFor(model => model.ShowOnHome, "", new { @class = "text-danger" })
         </div>
         <div class="col-sm-12 form-group text-right">

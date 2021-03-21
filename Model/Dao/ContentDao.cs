@@ -90,6 +90,8 @@ namespace Model.Dao
             contentUpdate.Image = content.Image;
             contentUpdate.MetaKeywords = content.MetaKeywords;
             contentUpdate.MetaTitle = content.MetaTitle;
+            contentUpdate.CreatedBy = content.CreatedBy;
+            contentUpdate.CreatedDate = content.CreatedDate;
             contentUpdate.ModifiedBy = content.ModifiedBy;
             contentUpdate.ModifiedDate = content.ModifiedDate;
             contentUpdate.Status = content.Status;

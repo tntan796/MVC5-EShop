@@ -114,7 +114,8 @@
                         <i class="fas fa-calendar-alt text-primary"></i>
                     </span>
                 </div>
-                <input type="date" class="form-control" name="CreatedDate" placeholder="Ngày tạo" value="@Model.CreatedDate">
+                <input type="date" class="form-control" name="CreatedDate" placeholder="Ngày tạo"
+                       value="@(Model.CreatedDate.HasValue ? Model.CreatedDate.Value.ToString("yyyy-MM-dd") : null)">
             </div>
         </div>
         <div class="col-sm-12 col-md-6 form-group ">
@@ -136,7 +137,8 @@
                         <i class="far fa-calendar-check text-primary"></i>
                     </span>
                 </div>
-                <input type="date" class="form-control" name="ModifiedDate" placeholder="Ngày sửa" value="@Model.ModifiedDate">
+                <input type="date" class="form-control" name="ModifiedDate" placeholder="Ngày sửa"
+                       value="@(Model.ModifiedDate.HasValue ? Model.ModifiedDate.Value.ToString("yyyy-MM-dd") : null)"
             </div>
         </div>
         <div class="col-sm-12 col-md-6 form-group ">
@@ -153,9 +155,10 @@
         <div class="col-sm-12 col-md-6 form-group ">
             <label>Trạng thái</label> <br />
             <label class="switch">
-                <input type="checkbox" name="Status" checked="@Model.Status">
+                <input type="checkbox" name="Status" checked="@Model.Status" value="true">
                 <span class="slider round"></span>
             </label>
+            <input type="hidden" name="Status" value="false">
             @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
         </div>
         <div class="col-sm-12 col-md-6 form-group ">
@@ -164,6 +167,7 @@
                 <input type="checkbox" name="ShowOnHome" checked="@Model.ShowOnHome">
                 <span class="slider round"></span>
             </label>
+            <input type="hidden" name="ShowOnHome" value="false">
             @Html.ValidationMessageFor(model => model.ShowOnHome, "", new { @class = "text-danger" })
         </div>
         <div class="col-sm-12 form-group text-right">

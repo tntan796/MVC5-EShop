@@ -1,0 +1,16 @@
+﻿@using Model.EF
+@model IEnumerable<ProductCategory>
+@{
+    Layout = null;
+}
+<div class="header_bottom_left">
+    <div class="categories">
+        <ul>
+            <h3>Categories</h3>
+            @foreach (var item in Model)
+            {
+                <li><a href="@item.MetaTitle">@item.Name</a></li>
+            }
+        </ul>
+    </div>
+</div>

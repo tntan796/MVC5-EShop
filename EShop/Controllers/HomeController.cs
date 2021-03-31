@@ -10,22 +10,18 @@ namespace EShop.Controllers
 {
     public class HomeController : Controller
     {
-        MenuDao menuDao = null;
+        private MenuDao menuDao = null;
+        private ProductDao productDao = null;
         public HomeController()
         {
             menuDao = new MenuDao();
+            productDao = new ProductDao();
         }
         public ActionResult Index()
         {
+            ViewBag.NewProducts = productDao.ListNewProduct(3);
+            ViewBag.FeatureProducts = productDao.ListFeatureProduct(3);
             return View();
-        }
-
-        // GET: Menu
-        [ChildActionOnly]
-        public ActionResult TopMenu()
-        {
-            IEnumerable<Menu> menus = menuDao.GetByTypeId(1);
-            return View(menus);
         }
     }
 }

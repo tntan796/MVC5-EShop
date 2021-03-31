@@ -40,10 +40,10 @@
                 </div>
                 <div class="clear"></div>
             </div>
-            @{ Html.RenderAction("TopMenu", "Home"); }
+            @{ Html.RenderAction("TopMenu", "Menu"); }
             <div class="header_slide">
-                @Html.Partial("_BottomMenuPartial")
-                @Html.Partial("_SlidePartial")
+                @{ Html.RenderAction("Index", "ProductCategory"); }
+                @{ Html.RenderAction("Index", "Slide"); }
                 <div class="clear"></div>
             </div>
         </div>

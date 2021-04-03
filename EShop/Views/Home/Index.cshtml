@@ -9,6 +9,12 @@
     var listNewProduct = (List<Product>)ViewBag.NewProducts;
     var listFeatureProduct = (List<Product>)ViewBag.FeatureProducts;
 }
+@{ Html.RenderAction("TopMenu", "Menu"); }
+<div class="header_slide">
+    @{ Html.RenderAction("Index", "ProductCategory"); }
+    @{ Html.RenderAction("Index", "Slide"); }
+    <div class="clear"></div>
+</div>
 
 <div class="content_top">
     <div class="heading">
@@ -23,7 +29,8 @@
     @foreach (var product in listNewProduct)
     {
         <div class="grid_1_of_4 images_1_of_4">
-            <a href="preview.html"><img src="~/assets/client/images/products/@product.Image" alt="" /></a>
+            <a href="/chi-tiet/@product.ID">
+            <img src="~/assets/client/images/products/@product.Image" alt="" /></a>
             <h2>@product.Name </h2>
             <div class="price-details">
                 <div class="row">

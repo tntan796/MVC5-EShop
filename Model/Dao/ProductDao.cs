@@ -102,5 +102,25 @@ namespace Model.Dao
             }
             return COMMON_CONSTANTS.EDIT_FAIL;
         }
+
+        public List<Product> GetProductByCategory(long category, ref int totalRecord, int pageNumber = 1, int pageSize = 2)
+        {
+            totalRecord = dbContext.Products.Where(t => t.CategoryID == category).Count();
+            return dbContext.Products.Where(t => t.CategoryID == category)
+                                    .OrderBy(t => t.CreatedDate)
+                                    .Skip(pageSize * (pageNumber - 1))
+                                    .Take(pageSize)
+                                    .ToList();
+        }
+        public List<Product> GetRelatedProducts(long id)
+        {
+            Product product = dbContext.Products.SingleOrDefault(t => t.ID == id);
+            if (product == null)
+            {
+                return null;
+            }
+            return dbContext.Products
+                .Where(t => t.CategoryID == product.CategoryID && t.ID != product.ID).Take(4).ToList();
+        }
     }
 }

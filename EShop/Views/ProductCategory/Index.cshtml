@@ -7,9 +7,22 @@
     <div class="categories">
         <ul>
             <h3>Categories</h3>
-            @foreach (var item in Model)
+            @foreach (var item in Model.Where(t => t.ParentId == null))
             {
-                <li><a href="@item.MetaTitle">@item.Name</a></li>
+                var child = Model.Where(t => t.ParentId == item.ID);
+                var parentClass = child.Count() > 0 ? "data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'" : "";
+                <li class="dropdown">
+                    <a href="/san-pham/@item.MetaTitle-@item.ID" @Html.Raw(parentClass)>@item.Name</a>
+                    @if (child.Count() > 0)
+                    {
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            @foreach (var childMenu in child)
+                            {
+                                <a class="dropdown-item" href="/san-pham/@childMenu.MetaTitle-@childMenu.ID">@childMenu.Name</a>
+                            }
+                        </div>
+                    }
+                </li>
             }
         </ul>
     </div>

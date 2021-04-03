@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="~/assets/client/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/assets/client/css/slider.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/assets/client/libs/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     @RenderSection("styles", required: false)
 </head>
 <body>
@@ -25,7 +27,7 @@
             </div>
             <div class="header_top">
                 <div class="logo">
-                    <a href="index.html"><img src="~/assets/client/images/logo.png" alt="" /></a>
+                    <a href="/"><img src="~/assets/client/images/logo.png" alt="" /></a>
                 </div>
                 <div class="cart">
                     <p>
@@ -40,23 +42,18 @@
                 </div>
                 <div class="clear"></div>
             </div>
-            @{ Html.RenderAction("TopMenu", "Menu"); }
-            <div class="header_slide">
-                @{ Html.RenderAction("Index", "ProductCategory"); }
-                @{ Html.RenderAction("Index", "Slide"); }
-                <div class="clear"></div>
-            </div>
         </div>
         @RenderBody()
     </div>
     @Html.Partial("_FooterPartial")
     <a href="#" id="toTop"><span id="toTopHover"> </span></a>
-
-    <script type="text/javascript" src="~/assets/client/js/jquery-1.7.2.min.js"></script>
+    <script src="~/assets/client/js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="~/assets/client/js/move-top.js"></script>
     <script type="text/javascript" src="~/assets/client/js/easing.js"></script>
     <script type="text/javascript" src="~/assets/client/js/startstop-slider.js"></script>
     <script src="~/assets/client/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="~/assets/client/libs/bootstrap/js/bootstrap.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -1,0 +1,97 @@
+﻿@using Model.EF
+@model IEnumerable<Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var category = (ProductCategory)ViewBag.Category;
+}
+<style>
+    .paging a {
+        text-decoration: none;
+        padding: 0.5em 0.8em;
+        text-align: center;
+        margin: 2px;
+        box-shadow: 0 0 5px grey;
+        border-radius: 5px;
+        color: dodgerblue;
+        font-weight: 600;
+    }
+
+        .paging a:hover {
+            box-shadow: 0 0 8px grey;
+            transition: 0.2s ease-in;
+        }
+
+        .paging a.active {
+            box-shadow: inset 0 0 5px grey;
+            padding: 0.6em 0.9em;
+            font-weight: 700;
+        }
+</style>
+<div class="section group">
+    @foreach (var product in Model)
+    {
+        <div class="grid_1_of_4 images_1_of_4">
+            <a href="/chi-tiet/@product.ID">
+                <img src="~/assets/client/images/products/@product.Image" alt="" />
+            </a>
+            <h2>@product.Name </h2>
+            <div class="price-details">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span class="text-bold text-gray-600">@product.Price.Value.ToString("#,##")</span>
+                    </div>
+                    <div class="col-sm-12">
+                        <a href="preview.html" class="button">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    }
+</div>
+@if (ViewBag.TotalPage > 1)
+{
+    var pageDisplay = (int)ViewBag.MaxPage;
+    int totalPage = (int)ViewBag.TotalPage;
+    int currentPage = (int)ViewBag.Page;
+    var startPageIndex = Math.Max(1, currentPage - pageDisplay / 2);
+    var endPageIndex = Math.Min(totalPage, currentPage + pageDisplay / 2);
+    var link = "/san-pham/" + category.MetaTitle + "-" + category.ID;
+    <div class="paging row">
+        @if (currentPage > ViewBag.First)
+        {
+            <a href="@link?page=@ViewBag.First" title="Trang đầu" class="first">
+                <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+            </a>
+            <a href="@link?page=@ViewBag.Prev" title="Trang trước" class="prev">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            </a>
+        }
+        @for (int i = startPageIndex; i <= endPageIndex; i++)
+        {
+            if (currentPage == i)
+            {
+                <a href="@link?page=@i" class="active" title="Trang @i">@i</a>
+            }
+            else
+            {
+                <a href="@link?page=@i" title="Trang @i" class="pos">@i</a>
+            }
+        }
+        @if (currentPage < totalPage)
+        {
+            <a href="@link?page=@ViewBag.First" title="Trang sau">
+                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </a>
+            <a href="@link?page=@ViewBag.Prev" title="Trang cuối">
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            </a>
+        }
+    </div>
+}
+else
+{
+    <span>Không có bản ghi nào</span>
+}

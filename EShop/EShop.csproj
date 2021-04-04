@@ -143,9 +143,11 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
-    <Compile Include="Commons\Contants.cs" />
+    <Compile Include="Commons\Constants.cs" />
     <Compile Include="Commons\Security.cs" />
     <Compile Include="Commons\UserLogin.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FooterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
@@ -155,8 +157,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\CommonObject.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\Payment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1848,6 +1852,8 @@
     <Content Include="assets\admin\vendor\jquery\jquery.min.js" />
     <Content Include="assets\admin\vendor\jquery\jquery.slim.js" />
     <Content Include="assets\admin\vendor\jquery\jquery.slim.min.js" />
+    <Content Include="assets\client\controllers\cart\cart.js" />
+    <Content Include="assets\client\css\cart\cart.css" />
     <Content Include="assets\client\css\easy-responsive-tabs.css" />
     <Content Include="assets\client\css\global.css" />
     <Content Include="assets\client\css\main.css" />
@@ -2356,6 +2362,11 @@
     <Content Include="Views\Slide\Index.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Home\HeaderTop.cshtml" />
+    <Content Include="Views\Cart\Payment.cshtml" />
+    <Content Include="Views\Cart\PaymentSuccess.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

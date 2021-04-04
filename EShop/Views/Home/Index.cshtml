@@ -38,7 +38,7 @@
                         <span class="text-bold text-gray-600">@product.Price.Value.ToString("#,##")</span>
                     </div>
                     <div class="col-sm-12">
-                        <a href="preview.html" class="button">Add to Cart</a>
+                        <a href="/cart/additem?productId=@product.ID&quantity=1" class="button">Add to Cart</a>
                     </div>
                 </div>
                 <div class="clear"></div>
@@ -72,7 +72,7 @@
                         <span class="text-bold text-gray-600">@product.Price.Value.ToString("#,##")</span>
                     </div>
                     <div class="col-sm-12">
-                        <a href="/chi-tiet/@product.MetaTitle-@product.ID" class="btn btn-primary">Add to Cart</a>
+                        <a href="/cart/additem?productId=@product.ID&quantity=1" class="button">Add to Cart</a>
                     </div>
                 </div>
                 <div class="clear"></div>

@@ -33,7 +33,7 @@ namespace EShop.Areas.Admin.Controllers
                 UserLogin userLogin = new UserLogin();
                 userLogin.UserName = user.UserName;
                 userLogin.UserID = user.ID;
-                Session.Add(Contants.USER_SESSION, userLogin);
+                Session.Add(Constants.USER_SESSION, userLogin);
                 return RedirectToAction("Index", "Home");
             } else
             {

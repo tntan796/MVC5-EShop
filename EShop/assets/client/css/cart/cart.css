@@ -1,0 +1,17 @@
+﻿.cart {
+    padding-right: 1em;
+}
+
+.wrapper-dropdown-2.active .dropdown {
+    box-shadow: 0 0 10px gray;
+    border-radius: 10px;
+    background: white;
+}
+
+.wrapper-dropdown-2 .dropdown {
+    width: 300px;
+}
+
+.wrapper-dropdown-2 .dropdown li:hover {
+
+}

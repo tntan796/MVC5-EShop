@@ -1,0 +1,76 @@
+﻿@model EShop.Models.Payment
+
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index", "Home")">Trang chủ</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index", "User")">Giỏ hàng</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Thanh toán</li>
+    </ol>
+</nav>
+
+<form action="/cart/payment" method="post" class="bg-white p-3 shadow" style="border-radius: 1rem;">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="col-sm-12 col-md-6 form-group ">
+            <label>Tên người nhận <span class="text-danger"> *</span></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white">
+                        <i class="fas fa-user text-primary"></i>
+                    </span>
+                </div>
+                <input type="text" class="form-control" name="ShipName" placeholder="Tên người nhận">
+            </div>
+            @Html.ValidationMessageFor(model => model.ShipName, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-sm-12 col-md-6 form-group ">
+            <label>Điện thoại <span class="text-danger"> *</span></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white">
+                        <i class="fas fa-user text-primary"></i>
+                    </span>
+                </div>
+                <input type="text" class="form-control" name="Mobile" placeholder="Điện thoại">
+            </div>
+            @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-sm-12 col-md-6 form-group ">
+            <label>Địa chỉ <span class="text-danger"> *</span></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white">
+                        <i class="fas fa-user text-primary"></i>
+                    </span>
+                </div>
+                <input type="text" class="form-control" name="Address" placeholder="Địa chỉ">
+            </div>
+            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-sm-12 col-md-6 form-group ">
+            <label>Email <span class="text-danger"> *</span></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white">
+                        <i class="fas fa-user text-primary"></i>
+                    </span>
+                </div>
+                <input type="text" class="form-control" name="Email" placeholder="Email">
+            </div>
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-sm-12 text-right">
+            <button class="btn btn-primary" type="submit">Xác nhận</button>
+        </div>
+    </div>
+</form>

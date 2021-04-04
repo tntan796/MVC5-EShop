@@ -35,7 +35,7 @@ namespace EShop.Areas.Admin.Controllers
                 return View(category);
             }
             category.CreatedDate = DateTime.Now;
-            category.CreatedBy = (Session[Contants.USER_SESSION] as UserLogin).UserID.ToString();
+            category.CreatedBy = (Session[Constants.USER_SESSION] as UserLogin).UserID.ToString();
             string addStatus = categoryDao.Add(category);
             if (addStatus == COMMON_CONSTANTS.ADD_FAIL)
             {
@@ -85,7 +85,7 @@ namespace EShop.Areas.Admin.Controllers
             }
             string addStatus = categoryDao.Edit(category);
             category.ModifiedDate = DateTime.Now;
-            category.ModifiedBy = (Session[Contants.USER_SESSION] as UserLogin).UserID.ToString();
+            category.ModifiedBy = (Session[Constants.USER_SESSION] as UserLogin).UserID.ToString();
             if (addStatus == COMMON_CONSTANTS.EDIT_FAIL)
             {
                 return RedirectToAction("Index", "Error");

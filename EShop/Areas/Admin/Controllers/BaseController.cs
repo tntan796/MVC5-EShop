@@ -12,7 +12,7 @@ namespace EShop.Areas.Admin.Controllers
     {
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            UserLogin session = Session[Contants.USER_SESSION] as UserLogin;
+            UserLogin session = Session[Constants.USER_SESSION] as UserLogin;
             if (session == null)
             {
                 filterContext.Result = RedirectToRoute("Admin_login");

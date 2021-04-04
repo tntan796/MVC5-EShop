@@ -28,6 +28,20 @@ namespace EShop
             );
 
             routes.MapRoute(
+                name: "cart",
+                url: "cart",
+                defaults: new { controller = "Cart", action = "Index", id = UrlParameter.Optional },
+                    namespaces: new string[] { "EShop.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "payment",
+                url: "payment",
+                defaults: new { controller = "Cart", action = "Payment", id = UrlParameter.Optional },
+                    namespaces: new string[] { "EShop.Controllers" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },

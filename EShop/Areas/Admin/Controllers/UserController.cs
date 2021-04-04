@@ -41,7 +41,7 @@ namespace EShop.Areas.Admin.Controllers
             }
             user.Password = Security.MD5Hash(user.Password);
             user.CreatedDate = DateTime.Now;
-            user.CreatedBy = (Session[Contants.USER_SESSION] as UserLogin).UserID.ToString();
+            user.CreatedBy = (Session[Constants.USER_SESSION] as UserLogin).UserID.ToString();
             long id = userDao.Insert(user);
             if (id > 0)
             {
@@ -94,7 +94,7 @@ namespace EShop.Areas.Admin.Controllers
             {
                 return View(user);
             }
-            user.ModifiedBy = (Session[Contants.USER_SESSION] as UserLogin).UserID.ToString();
+            user.ModifiedBy = (Session[Constants.USER_SESSION] as UserLogin).UserID.ToString();
             string result = userDao.Update(user);
             if (result == COMMON_CONSTANTS.EDIT_SUCCESS)
             {

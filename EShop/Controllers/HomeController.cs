@@ -1,4 +1,6 @@
-﻿using Model.Dao;
+﻿using EShop.Commons;
+using EShop.Models;
+using Model.Dao;
 using Model.EF;
 using System;
 using System.Collections.Generic;
@@ -22,6 +24,18 @@ namespace EShop.Controllers
             ViewBag.NewProducts = productDao.ListNewProduct(3);
             ViewBag.FeatureProducts = productDao.ListFeatureProduct(3);
             return View();
+        }
+
+        [ChildActionOnly]
+        public ActionResult HeaderTop()
+        {
+            var carts = Session[Constants.CART_SESSION];
+            List<CartItem> cartList = new List<CartItem>();
+            if (carts != null)
+            {
+                cartList = (List<CartItem>)carts;
+            }
+            return PartialView(cartList);
         }
     }
 }

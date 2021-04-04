@@ -5,8 +5,9 @@ using System.Web;
 
 namespace EShop.Commons
 {
-    public static class Contants
+    public static class Constants
     {
         public static string USER_SESSION = "USER_SESSION";
+        public static string CART_SESSION = "CartSesssion";
     }
 }

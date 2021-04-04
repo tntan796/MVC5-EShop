@@ -7,6 +7,7 @@
     <link href="~/assets/client/css/slider.css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/assets/client/libs/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link href="~/assets/client/css/cart/cart.css" rel="stylesheet" />
     @RenderSection("styles", required: false)
 </head>
 <body>
@@ -25,23 +26,7 @@
                 </div>
                 <div class="clear"></div>
             </div>
-            <div class="header_top">
-                <div class="logo">
-                    <a href="/"><img src="~/assets/client/images/logo.png" alt="" /></a>
-                </div>
-                <div class="cart">
-                    <p>
-                        Welcome to our Online Store! <span>Cart:</span>
-                        <div id="dd" class="wrapper-dropdown-2">
-                            0 item(s) - $0.00
-                            <ul class="dropdown">
-                                <li>you have no items in your Shopping cart</li>
-                            </ul>
-                        </div>
-                    </p>
-                </div>
-                <div class="clear"></div>
-            </div>
+            @{ Html.RenderAction("HeaderTop", "Home"); }
         </div>
         @RenderBody()
     </div>

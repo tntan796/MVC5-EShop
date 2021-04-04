@@ -45,7 +45,7 @@ namespace EShop.Areas.Admin.Controllers
                 return View(content);
             }
             content.CreatedDate = DateTime.Now;
-            content.CreatedBy = (Session[Contants.USER_SESSION] as UserLogin).UserID.ToString();
+            content.CreatedBy = (Session[Constants.USER_SESSION] as UserLogin).UserID.ToString();
             string result = contentDao.Add(content);
             if (result == COMMON_CONSTANTS.ADD_SUCCESS)
             {
@@ -78,7 +78,7 @@ namespace EShop.Areas.Admin.Controllers
             {
                 return View(content);
             }
-            content.ModifiedBy = (Session[Contants.USER_SESSION] as UserLogin).UserID.ToString();
+            content.ModifiedBy = (Session[Constants.USER_SESSION] as UserLogin).UserID.ToString();
             content.ModifiedDate = DateTime.Now;
             string result = contentDao.Edit(content);
             if (result == COMMON_CONSTANTS.EDIT_SUCCESS)

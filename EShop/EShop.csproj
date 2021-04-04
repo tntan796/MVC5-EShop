@@ -1938,6 +1938,7 @@
     <Content Include="assets\client\libs\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="assets\client\libs\bootstrap\js\bootstrap.js" />
     <Content Include="assets\client\libs\bootstrap\js\bootstrap.min.js" />
+    <Content Include="assets\client\templates\new-order.html" />
     <Content Include="assets\library\ckeditor5-build-classic\ckeditor.js" />
     <Content Include="assets\library\ckeditor5-build-classic\index.html" />
     <Content Include="assets\library\ckeditor5-build-classic\sample\css\sample.css" />
@@ -2378,6 +2379,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{9C682264-2AAA-49D4-9FEC-0C7148041896}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{18e35611-ac25-4842-a7d7-4087e5c54d56}</Project>
       <Name>Model</Name>

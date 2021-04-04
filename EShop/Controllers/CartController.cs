@@ -1,9 +1,11 @@
-﻿using EShop.Commons;
+﻿using Common;
+using EShop.Commons;
 using EShop.Models;
 using Model.Dao;
 using Model.EF;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -145,6 +147,14 @@ namespace EShop.Controllers
                     orderDetail.Quantity = cart.Quantity;
                     orderDetailDao.Insert(orderDetail);
                 }
+                string content = System.IO.File.ReadAllText(Server.MapPath("~/assets/client/templates/new-order.html"));
+                content = content.Replace("{{CustomerName}}", payment.ShipName);
+                content = content.Replace("{{Phone}}", payment.Mobile);
+                content = content.Replace("{{Email}}", payment.Email);
+                content = content.Replace("{{Address}}", payment.Address);
+                string toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
+                (new MailHelper()).SendMail(toEmail, "Đơn hàng mới từ Online", content);
+                Session[Constants.CART_SESSION] = null;
                 return RedirectToAction("PaymentSuccess");
             }
             catch (Exception ex)

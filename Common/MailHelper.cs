@@ -22,23 +22,21 @@ namespace Common
                 var smtpPort = ConfigurationManager.AppSettings["SMTPPort"].ToString();
                 bool enabledSSL = bool.Parse(ConfigurationManager.AppSettings["EnabledSSL"].ToString());
                 string body = content;
-                MailMessage message = new MailMessage(
-                    new MailAddress(
-                        fromEmailAddress, fromEmailDisplayName
-                    ),
-                    new MailAddress(
-                        toEmailAddress
-                    ));
+
+                MailMessage message = new MailMessage();
+                message.To.Add(toEmailAddress);
+                message.From = new MailAddress(fromEmailAddress, fromEmailDisplayName);
+                 
                 message.Subject = subject;
                 message.IsBodyHtml = true;
                 message.Body = body;
+
                 var client = new SmtpClient();
                 client.UseDefaultCredentials = false;
-                client.Credentials = new NetworkCredential(fromEmailAddress, fromEmailPassword);
+                client.Credentials = new NetworkCredential("tank8uneti@gmail.com", "allisonchen1428");
                 client.Host = smtpHost;
-                client.EnableSsl = enabledSSL;
-                client.Port = !string.IsNullOrEmpty(smtpPort) ? Convert.ToInt32(smtpPort) : 0;
-                client.UseDefaultCredentials = true;
+                client.EnableSsl = true;
+                client.Port = 587;
                 client.Send(message);
             }
             catch (Exception ex)

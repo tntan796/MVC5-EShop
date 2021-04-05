@@ -138,6 +138,7 @@ namespace EShop.Controllers
                 order.ShipAddress = payment.Address;
                 long orderId = orderDao.Insert(order);
                 List<CartItem> carts = (List<CartItem>)Session[Constants.CART_SESSION];
+                decimal? totalAmount = 0;
                 foreach (CartItem cart in carts)
                 {
                     OrderDetail orderDetail = new OrderDetail();
@@ -146,14 +147,17 @@ namespace EShop.Controllers
                     orderDetail.Price = cart.Product.Price;
                     orderDetail.Quantity = cart.Quantity;
                     orderDetailDao.Insert(orderDetail);
+                    totalAmount += orderDetail.Price * orderDetail.Quantity;
                 }
-                string content = System.IO.File.ReadAllText(Server.MapPath("~/assets/client/templates/new-order.html"));
-                content = content.Replace("{{CustomerName}}", payment.ShipName);
-                content = content.Replace("{{Phone}}", payment.Mobile);
-                content = content.Replace("{{Email}}", payment.Email);
-                content = content.Replace("{{Address}}", payment.Address);
-                string toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
-                (new MailHelper()).SendMail(toEmail, "Đơn hàng mới từ Online", content);
+                //Send Email
+                //string content = System.IO.File.ReadAllText(Server.MapPath("~/assets/client/templates/new-order.html"));
+                //content = content.Replace("{{CustomerName}}", payment.ShipName);
+                //content = content.Replace("{{Phone}}", payment.Mobile);
+                //content = content.Replace("{{Email}}", payment.Email);
+                //content = content.Replace("{{Address}}", payment.Address);
+                //content = content.Replace("{{totalAmount}}", totalAmount.ToString());
+                //string toEmail = payment.Email;
+                //(new MailHelper()).SendMail(toEmail, "Đơn hàng mới từ Online", content);
                 Session[Constants.CART_SESSION] = null;
                 return RedirectToAction("PaymentSuccess");
             }

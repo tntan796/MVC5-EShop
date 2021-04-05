@@ -63,6 +63,7 @@
     <Compile Include="Commons\ResponseFormat.cs" />
     <Compile Include="Dao\CategoryDao.cs" />
     <Compile Include="Dao\ContentDao.cs" />
+    <Compile Include="Dao\FeedbackDao.cs" />
     <Compile Include="Dao\FooterDao.cs" />
     <Compile Include="Dao\MenuDao.cs" />
     <Compile Include="Dao\OrderDao.cs" />

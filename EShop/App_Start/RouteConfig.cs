@@ -14,6 +14,13 @@ namespace EShop
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+            name: "contact",
+            url: "lien-he",
+            defaults: new { controller = "Contact", action = "Index", id = UrlParameter.Optional },
+                namespaces: new string[] { "EShop.Controllers" }
+            );
+
+            routes.MapRoute(
              name: "product-detail",
              url: "chi-tiet/{id}",
              defaults: new { controller = "Product", action = "Detail", id = UrlParameter.Optional },

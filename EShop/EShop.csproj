@@ -147,6 +147,7 @@
     <Compile Include="Commons\Security.cs" />
     <Compile Include="Commons\UserLogin.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FooterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -2368,6 +2369,7 @@
     <Content Include="Views\Cart\Payment.cshtml" />
     <Content Include="Views\Cart\PaymentSuccess.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

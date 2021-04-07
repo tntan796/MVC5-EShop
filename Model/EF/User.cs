@@ -22,6 +22,8 @@ namespace Model.EF
 
         [StringLength(250)]
         public string Address { get; set; }
+        [StringLength(250)]
+        public string Email { get; set; }
 
         [StringLength(20)]
         public string Phone { get; set; }

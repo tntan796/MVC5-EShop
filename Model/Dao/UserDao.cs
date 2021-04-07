@@ -45,6 +45,17 @@ namespace Model.Dao
             return user.ID;
         }
 
+        public bool CheckUserName(string userName)
+        {
+            var result = db.Users.Count(t => t.UserName == userName);
+            return result > 0;
+        }
+
+        public bool CheckEmail(string email)
+        {
+            return db.Users.Count(t => t.Email == email) > 0;
+        }
+
         public bool Delete(long id)
         {
             try

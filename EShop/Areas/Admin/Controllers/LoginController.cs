@@ -1,11 +1,8 @@
-﻿using EShop.Commons;
+﻿using Common;
+using EShop.Commons;
 using EShop.Models;
 using Model.Commons;
 using Model.Dao;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace EShop.Areas.Admin.Controllers
@@ -26,7 +23,7 @@ namespace EShop.Areas.Admin.Controllers
                 return View(login);
             }
             UserDao userDao = new UserDao();
-            string checkLogin = userDao.Login(login.UserName, Security.MD5Hash(login.Password));
+            string checkLogin = userDao.Login(login.UserName, login.Password);
             if (checkLogin == COMMON_CONSTANTS.USER_ACTIVE)
             {
                 var user = userDao.GetByUserName(login.UserName);

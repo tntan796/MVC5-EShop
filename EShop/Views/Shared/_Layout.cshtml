@@ -1,4 +1,9 @@
-﻿<!DOCTYPE HTML>
+﻿@using EShop.Commons
+
+@{
+    var user = Session[Constants.USER_SESSION] as UserLogin;
+}
+<!DOCTYPE HTML>
 <head>
     <title>Free Home Shoppe Website Template | Home :: w3layouts</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -20,8 +25,15 @@
                 <div class="account_desc">
                     <ul>
                         <li><a href="/user/register">Đăng ký</a></li>
-                        <li><a href="#">Checkout</a></li>
-                        <li><a href="#">My Account</a></li>
+                        @if (user == null)
+                        {
+                            <li><a href="/user/login">Đăng nhập</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="#">@user.UserName</a></li>
+                            <li><a href="/user/logout">Đăng xuất</a></li>
+                        }
                     </ul>
                 </div>
                 <div class="clear"></div>

@@ -1,20 +1,19 @@
-﻿using EShop.Commons;
+﻿using Common;
+using EShop.Commons;
 using Model.Commons;
 using Model.Dao;
 using Model.EF;
 using PagedList;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace EShop.Areas.Admin.Controllers
 {
     public class UserController : BaseController
     {
-        EShopDbContext dbContext = null;
-        UserDao userDao = null;
+        readonly EShopDbContext dbContext = null;
+        readonly UserDao userDao = null;
         public UserController()
         {
             dbContext = new EShopDbContext();
@@ -29,7 +28,7 @@ namespace EShop.Areas.Admin.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            return View(new User());
         }
 
         [HttpPost]

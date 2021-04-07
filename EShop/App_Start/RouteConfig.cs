@@ -21,6 +21,13 @@ namespace EShop
             );
 
             routes.MapRoute(
+            name: "dang-nhap",
+            url: "dang-nhap",
+            defaults: new { controller = "User", action = "Login", id = UrlParameter.Optional },
+                namespaces: new string[] { "EShop.Controllers" }
+            );
+
+            routes.MapRoute(
              name: "product-detail",
              url: "chi-tiet/{id}",
              defaults: new { controller = "Product", action = "Detail", id = UrlParameter.Optional },

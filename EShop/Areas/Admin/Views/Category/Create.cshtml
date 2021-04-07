@@ -40,7 +40,7 @@
                         <i class="fas fa-user text-primary"></i>
                     </span>
                 </div>
-                <input type="text" class="form-control" name="Name" placeholder="Tên danh mục">
+                <input type="text" class="form-control" name="Name" placeholder="Tên danh mục" value="@Model.Name">
             </div>
             @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
         </div>
@@ -52,7 +52,7 @@
                         <i class="fas fa-user text-primary"></i>
                     </span>
                 </div>
-                <input type="text" class="form-control" name="MetaTitle" placeholder="Meta tiêu đề">
+                <input type="text" class="form-control" name="MetaTitle" placeholder="Meta tiêu đề" value="@Model.MetaTitle">
             </div>
             @Html.ValidationMessageFor(model => model.MetaTitle, "", new { @class = "text-danger" })
         </div>
@@ -64,7 +64,7 @@
                         <i class="fas fa-user text-primary"></i>
                     </span>
                 </div>
-                <input type="text" class="form-control" name="ParentId" placeholder="Danh mục cha">
+                <input type="text" class="form-control" name="ParentId" placeholder="Danh mục cha" value="@Model.ParentId">
             </div>
             @Html.ValidationMessageFor(model => model.ParentId, "", new { @class = "text-danger" })
         </div>
@@ -76,7 +76,7 @@
                         <i class="fas fa-user text-primary"></i>
                     </span>
                 </div>
-                <input type="text" class="form-control" name="DisplayOrder" placeholder="Thứ tự">
+                <input type="text" class="form-control" name="DisplayOrder" placeholder="Thứ tự" value="@Model.DisplayOrder">
             </div>
             @Html.ValidationMessageFor(model => model.DisplayOrder, "", new { @class = "text-danger" })
         </div>
@@ -88,7 +88,7 @@
                         <i class="fas fa-user text-primary"></i>
                     </span>
                 </div>
-                <input type="text" class="form-control" name="SeoTitle" placeholder="Tiêu đề SEO">
+                <input type="text" class="form-control" name="SeoTitle" placeholder="Tiêu đề SEO" value="@Model.SeoTitle">
             </div>
             @Html.ValidationMessageFor(model => model.SeoTitle, "", new { @class = "text-danger" })
         </div>
@@ -100,14 +100,14 @@
                         <i class="fas fa-user text-primary"></i>
                     </span>
                 </div>
-                <input type="text" class="form-control" name="MetaKeywords" placeholder="Từ khóa Meta">
+                <input type="text" class="form-control" name="MetaKeywords" placeholder="Từ khóa Meta" value="@Model.MetaKeywords">
             </div>
             @Html.ValidationMessageFor(model => model.MetaKeywords, "", new { @class = "text-danger" })
         </div>
         <div class="col-sm-12 col-md-6 form-group ">
             <label>Trạng thái</label> <br />
             <label class="switch">
-                <input type="checkbox" name="Status" value="true">
+                <input type="checkbox" name="Status" value="true" checked="@Model.Status">
                 <span class="slider round"></span>
             </label>
             <input name="Status" type="hidden" value="false" />
@@ -116,7 +116,7 @@
         <div class="col-sm-12 col-md-6 form-group ">
             <label>Hiển thị trang chủ</label> <br />
             <label class="switch">
-                <input type="checkbox" name="ShowOnHome" value="true">
+                <input type="checkbox" name="ShowOnHome" value="true" checked="@Model.ShowOnHome">
                 <span class="slider round"></span>
             </label>
             <input name="ShowOnHome" type="hidden" value="false" />

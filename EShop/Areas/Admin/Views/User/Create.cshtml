@@ -43,7 +43,7 @@
                         <i class="fas fa-user text-primary"></i>
                     </span>
                 </div>
-                <input type="text" class="form-control" name="UserName" placeholder="Tài khoản" aria-label="UserName">
+                <input type="text" class="form-control" name="UserName" placeholder="Tài khoản" value="@Model.UserName">
             </div>
             @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
         </div>
@@ -55,7 +55,7 @@
                         <i class="fas fa-user-lock text-primary"></i>
                     </span>
                 </div>
-                <input type="password" class="form-control" name="Password" placeholder="Mật khẩu" aria-label="Password">
+                <input type="password" class="form-control" name="Password" placeholder="Mật khẩu" value="@Model.Password">
             </div>
             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
         </div>
@@ -67,7 +67,7 @@
                         <i class="fas fa-chalkboard-teacher text-primary"></i>
                     </span>
                 </div>
-                <input type="text" class="form-control" name="Name" placeholder="Họ tên" aria-label="Name">
+                <input type="text" class="form-control" name="Name" placeholder="Họ tên" value="@Model.Name">
             </div>
             @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
         </div>
@@ -80,7 +80,7 @@
                         <i class="fas fa-map-marked-alt text-primary"></i>
                     </span>
                 </div>
-                <input type="text" class="form-control" name="Address" placeholder="Địa chỉ" aria-label="Address">
+                <input type="text" class="form-control" name="Address" placeholder="Địa chỉ" value="@Model.Address">
             </div>
             @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
         </div>
@@ -92,14 +92,14 @@
                         <i class="fas fa-phone-alt text-primary"></i>
                     </span>
                 </div>
-                <input type="text" class="form-control" name="Phone" placeholder="Điện thoại" aria-label="Phone">
+                <input type="text" class="form-control" name="Phone" placeholder="Điện thoại" value="@Model.Phone">
             </div>
             @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
         </div>
         <div class="col-sm-12 col-md-6 form-group ">
             <label>Trạng thái</label> <br />
             <label class="switch">
-                <input type="checkbox" name="Status" value="true">
+                <input type="checkbox" name="Status" value="true" checked="@Model.Status">
                 <span class="slider round"></span>
             </label>
             <input type="hidden" name="Status" value="false">

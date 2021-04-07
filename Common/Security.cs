@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-namespace EShop.Commons
+namespace Common
 {
     public static class Security
     {

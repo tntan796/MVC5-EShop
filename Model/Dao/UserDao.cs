@@ -7,13 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using PagedList.Mvc;
 using PagedList;
+using Common;
 
 namespace Model.Dao
 {
     public class UserDao
     {
-        EShopDbContext db = null;
-
+        readonly EShopDbContext db = null;
         public UserDao()
         {
             db = new EShopDbContext();
@@ -78,7 +78,7 @@ namespace Model.Dao
                 return COMMON_CONSTANTS.LOGIN_USER_NAME_FAIL;
             } else
             {
-                if (user.Password == password)
+                if (user.Password == Security.MD5Hash(password))
                 {
                     if (user.Status == false)
                     {

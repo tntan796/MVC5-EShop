@@ -1,5 +1,8 @@
 ﻿using CaptchaMvc.HtmlHelpers;
+using Common;
+using EShop.Commons;
 using EShop.Models;
+using Model.Commons;
 using Model.Dao;
 using Model.EF;
 using System;
@@ -12,7 +15,7 @@ namespace EShop.Controllers
 {
     public class UserController : Controller
     {
-        UserDao userDao = null;
+        readonly UserDao userDao = null;
         public UserController()
         {
             if (userDao == null)
@@ -54,7 +57,7 @@ namespace EShop.Controllers
                 Email = register.Email,
                 CreatedBy = "",
                 CreatedDate = DateTime.Now,
-                Password = register.Password,
+                Password = Security.MD5Hash(register.Password),
                 Name = register.Name,
                 Phone = register.Phone,
                 Status = false
@@ -67,6 +70,42 @@ namespace EShop.Controllers
                 ViewBag.SuccessMessage = "Đăng ký thất bại";
             }
             return View(register);
+        }
+
+        public ActionResult Logout()
+        {
+            Session[Constants.USER_SESSION] = null;
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Login()
+        {
+            return View(new LoginModel());
+        }
+
+        [HttpPost]
+        public ActionResult Login(LoginModel loginModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(loginModel);
+            }
+            var loginStatus = userDao.Login(loginModel.UserName, loginModel.Password);
+            if (loginStatus == COMMON_CONSTANTS.USER_ACTIVE) {
+                var user = userDao.GetByUserName(loginModel.UserName);
+                UserLogin userLogin = new UserLogin();
+                userLogin.UserName = user.UserName;
+                userLogin.UserID = user.ID;
+                Session.Add(Constants.USER_SESSION, userLogin);
+                return RedirectToAction("Index", "Home");
+            } else if (loginStatus == COMMON_CONSTANTS.USER_INACTIVE)
+            {
+                ViewBag.LoginStatus = "Tài khoản bị khóa";
+            } else
+            {
+                ViewBag.LoginStatus = "Sai tài khoản hoặc mật khẩu";
+            }
+            return View(loginModel);
         }
     }
 }

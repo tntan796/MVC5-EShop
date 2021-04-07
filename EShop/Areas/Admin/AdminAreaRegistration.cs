@@ -20,6 +20,11 @@ namespace EShop.Areas.Admin
                 new { action = "Login", controller = "Login"}
             );
             context.MapRoute(
+                 "admin-dang-nhap",
+                 "admin/dang-nhap",
+                 new { action = "Login", controller = "Login" }
+            );
+            context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }

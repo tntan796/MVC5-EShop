@@ -32,7 +32,7 @@ namespace EShop.Areas.Admin.Controllers
         public ActionResult Create()
         {
             ViewBag.Categories = categoryDao.GetAll();
-            return View();
+            return View(new Content());
         }
 
         [HttpPost]

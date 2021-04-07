@@ -83,6 +83,7 @@
     <Compile Include="EF\Menu.cs" />
     <Compile Include="EF\MenuType.cs" />
     <Compile Include="EF\Metadata\ContentMetaData.cs" />
+    <Compile Include="EF\Metadata\UserMetaData.cs" />
     <Compile Include="EF\Order.cs" />
     <Compile Include="EF\OrderDetail.cs" />
     <Compile Include="EF\Product.cs" />
@@ -100,6 +101,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{9c682264-2aaa-49d4-9fec-0c7148041896}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

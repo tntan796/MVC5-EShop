@@ -53,7 +53,7 @@
                         <i class="fas fa-user text-primary"></i>
                     </span>
                 </div>
-                <input type="text" class="form-control" name="Name" placeholder="Tên bài viết">
+                <input type="text" class="form-control" name="Name" placeholder="Tên bài viết" value="@Model.Name">
             </div>
             @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
         </div>
@@ -65,7 +65,7 @@
                         <i class="fas fa-user text-primary"></i>
                     </span>
                 </div>
-                <input type="text" class="form-control" name="MetaTitle" placeholder="Meta tiêu đề">
+                <input type="text" class="form-control" name="MetaTitle" placeholder="Meta tiêu đề" value="@Model.MetaTitle">
             </div>
             @Html.ValidationMessageFor(model => model.MetaTitle, "", new { @class = "text-danger" })
         </div>
@@ -77,7 +77,7 @@
                         <i class="fas fa-user text-primary"></i>
                     </span>
                 </div>
-                <input type="text" class="form-control" name="Image" placeholder="Hình ảnh">
+                <input type="text" class="form-control" name="Image" placeholder="Hình ảnh" value="@Model.Image">
             </div>
             @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
         </div>
@@ -106,7 +106,7 @@
                         <i class="fas fa-user text-primary"></i>
                     </span>
                 </div>
-                <input type="text" class="form-control" name="Description" placeholder="Mô tả">
+                <input type="text" class="form-control" name="Description" placeholder="Mô tả" value="@Model.Description">
             </div>
             @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
         </div>
@@ -119,7 +119,7 @@
                         <i class="fas fa-user text-primary"></i>
                     </span>
                 </div>
-                <input type="text" class="form-control" name="Warranty" placeholder="Bảo hành">
+                <input type="text" class="form-control" name="Warranty" placeholder="Bảo hành" value="@Model.Warranty">
             </div>
             @Html.ValidationMessageFor(model => model.Warranty, "", new { @class = "text-danger" })
         </div>
@@ -132,7 +132,7 @@
                         <i class="fas fa-user-edit text-primary"></i>
                     </span>
                 </div>
-                <input type="text" class="form-control" placeholder="Meta keyword" name="MetaKeywords">
+                <input type="text" class="form-control" placeholder="Meta keyword" name="MetaKeywords" value="@Model.MetaKeywords">
             </div>
             @Html.ValidationMessageFor(model => model.MetaKeywords, "", new { @class = "text-danger" })
         </div>
@@ -145,7 +145,7 @@
                         <i class="fas fa-user-edit text-primary"></i>
                     </span>
                 </div>
-                <input type="text" class="form-control" placeholder="Tags" name="Tags">
+                <input type="text" class="form-control" placeholder="Tags" name="Tags" value="@Model.Tags">
             </div>
             @Html.ValidationMessageFor(model => model.Tags, "", new { @class = "text-danger" })
         </div>
@@ -164,7 +164,7 @@
         <div class="col-sm-6 col-md-6 form-group ">
             <label>Trạng thái</label> <br />
             <label class="switch">
-                <input type="checkbox" name="Status" value="true">
+                <input type="checkbox" name="Status" value="true" checked="@Model.Status">
                 <span class="slider round"></span>
             </label>
             <input type="hidden" name="Status" value="false">
@@ -172,7 +172,7 @@
         </div>
         <div class="col-sm-12 col-md-12 form-group ">
             <label>Chi tiết<span class="text-danger"> *</span></label>
-            <textarea id="detail" name="Detail" class="w-100" rows="10"></textarea>
+            <textarea id="detail" name="Detail" class="w-100" rows="10" value="@Model.Detail"></textarea>
             @Html.ValidationMessageFor(model => model.Detail, "", new { @class = "text-danger" })
         </div>
         <div class="col-sm-12 form-group text-right">

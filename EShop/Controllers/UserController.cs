@@ -2,11 +2,13 @@
 using Common;
 using EShop.Commons;
 using EShop.Models;
+using Facebook;
 using Model.Commons;
 using Model.Dao;
 using Model.EF;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -15,6 +17,17 @@ namespace EShop.Controllers
 {
     public class UserController : Controller
     {
+        private Uri RedirectUri
+        {
+            get
+            {
+                var uriBuilder = new UriBuilder(Request.Url);
+                uriBuilder.Query = null;
+                uriBuilder.Fragment = null;
+                uriBuilder.Path = Url.Action("FacebookCallback");
+                return uriBuilder.Uri;
+            }
+        }
         readonly UserDao userDao = null;
         public UserController()
         {
@@ -106,6 +119,68 @@ namespace EShop.Controllers
                 ViewBag.LoginStatus = "Sai tài khoản hoặc mật khẩu";
             }
             return View(loginModel);
+        }
+
+        public ActionResult LoginFacebook()
+        {
+            var fb = new FacebookClient();
+            var loginUrl = fb.GetLoginUrl(
+                new
+                {
+                    client_id = ConfigurationManager.AppSettings["AppId"],
+                    client_secret = ConfigurationManager.AppSettings["FbAppId"],
+                    redirect_uri = RedirectUri.AbsoluteUri,
+                    response_type = "code",
+                    scope = "email"
+                });
+            return Redirect(loginUrl.AbsoluteUri);
+        }
+
+        public ActionResult FacebookCallback(string code)
+        {
+            var fb = new FacebookClient();
+            dynamic result = fb.Post("oauth/access_token",
+                new
+                {
+                    client_id = ConfigurationManager.AppSettings["AppId"],
+                    client_secret = ConfigurationManager.AppSettings["FbAppId"],
+                    redirect_uri = RedirectUri.AbsoluteUri,
+                    code = code
+                });
+            var accessToken = result.access_token;
+            if (!string.IsNullOrEmpty(accessToken))
+            {
+                fb.AccessToken = accessToken;
+                // Get he user's information like email, first name, middle name,...
+                dynamic me = fb.Get("me?fields=first_name, middle_name, last_name, id, email");
+                if (userDao.CheckUserName(me.id) == false) {
+                    string email = me.id;
+                    string username = me.id;
+                    string firstname = me.first_name;
+                    string middlename = me.middle_name;
+                    string lastname = me.last_name;
+                    User user = new User()
+                    {
+                        UserName = username,
+                        Email = email,
+                        Status = true,
+                        Name = firstname + " " + middlename + " " + lastname
+                    };
+                    long resultInsert = userDao.Insert(user);
+                    if (resultInsert > 0)
+                    {
+                        var userSession = new UserLogin();
+                        userSession.UserID = user.ID;
+                        userSession.UserName = user.UserName;
+                        Session.Add(Constants.USER_SESSION, userSession);
+                    }
+                    return RedirectToAction("Index", "Home");
+                }
+            } else
+            {
+
+            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }

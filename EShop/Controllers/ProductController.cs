@@ -36,6 +36,7 @@ namespace EShop.Controllers
 
             return View(products);
         }
+        [OutputCache(Duration = int.MaxValue, VaryByParam = "id")]
 
         public ActionResult Detail(int id)
         {

@@ -12,6 +12,7 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Linq;
 
 namespace EShop.Controllers
 {
@@ -181,6 +182,29 @@ namespace EShop.Controllers
 
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        public JsonResult LoadDVHC()
+        {
+            var xmlDoc = XDocument.Load(Server.MapPath(@"~/assets/client/static-data/dvhc_data.xml"));
+            var xElement = xmlDoc.Element("DonViHanhChinhVietNam");
+            var xElements = xElement.Elements("DVHC");
+            List<DVHCModel> datas = new List<DVHCModel>();
+            DVHCModel dvhc = null;
+            foreach(var item in xElements)
+            {
+                dvhc = new DVHCModel();
+                dvhc.ID = (string)item.Element("MaDVHC") ?? "";
+                dvhc.Name = (string)item.Element("Ten") ?? "";
+                dvhc.Type = (string)item.Element("Cap") ?? "";
+                dvhc.ParentID = (string)item.Element("CapTren") ?? "";
+                datas.Add(dvhc);
+            }
+            return Json(new {
+                Province = datas.Where(t => t.Type == "TINH").ToList(),
+                District = datas.Where(t => t.Type == "HUYEN").ToList(),
+                Commune = datas.Where(t => t.Type == "XA").ToList()
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -24,6 +24,8 @@ namespace Model.EF
         public string Address { get; set; }
         [StringLength(250)]
         public string Email { get; set; }
+        public string ProvinceID { set; get; }
+        public string DistrictID { set; get; }
 
         [StringLength(20)]
         public string Phone { get; set; }

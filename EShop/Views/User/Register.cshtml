@@ -14,6 +14,10 @@
         </script>
     </text>
 }
+<script src="~/assets/client/js/jquery-3.6.0.min.js"></script>
+@section scripts {
+    <script src="~/assets/client/js/register.js"></script>
+}
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -111,6 +115,32 @@
                 </span>
             }
             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-sm-12 col-md-6 form-group ">
+            <label>Tỉnh thành</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white">
+                        <i class="fas fa-user text-primary"></i>
+                    </span>
+                </div>
+                <select class="form-control" name="ProvinceID" id="ddlProvinces">
+                </select>
+            </div>
+            @Html.ValidationMessageFor(model => model.ProvinceID, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-sm-12 col-md-6 form-group ">
+            <label>Quận huyện</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white">
+                        <i class="fas fa-user text-primary"></i>
+                    </span>
+                </div>
+                <select class="form-control" name="Districts" id="ddlDistricts">
+                </select>
+            </div>
+            @Html.ValidationMessageFor(model => model.DistrictID, "", new { @class = "text-danger" })
         </div>
         <div class="col-sm-12 col-md-6 form-group ">
             <label>Điện thoại</label>

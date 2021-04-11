@@ -1,0 +1,10 @@
+D:\ProjectLearn\Net\tedu\EShop\StaticResources\bin\Debug\StaticResources.dll
+D:\ProjectLearn\Net\tedu\EShop\StaticResources\bin\Debug\StaticResources.pdb
+D:\ProjectLearn\Net\tedu\EShop\StaticResources\bin\Debug\en\StaticResources.resources.dll
+D:\ProjectLearn\Net\tedu\EShop\StaticResources\obj\Debug\StaticResources.Resources.resources
+D:\ProjectLearn\Net\tedu\EShop\StaticResources\obj\Debug\StaticResources.Resources.en.resources
+D:\ProjectLearn\Net\tedu\EShop\StaticResources\obj\Debug\StaticResources.csproj.GenerateResource.cache
+D:\ProjectLearn\Net\tedu\EShop\StaticResources\obj\Debug\StaticResources.csproj.CoreCompileInputs.cache
+D:\ProjectLearn\Net\tedu\EShop\StaticResources\obj\Debug\en\StaticResources.resources.dll
+D:\ProjectLearn\Net\tedu\EShop\StaticResources\obj\Debug\StaticResources.dll
+D:\ProjectLearn\Net\tedu\EShop\StaticResources\obj\Debug\StaticResources.pdb

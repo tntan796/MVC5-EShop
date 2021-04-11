@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<options>
+  <option value="44" text="An Giang" />
+  <option value="43" text="Bà Rịa - Vũng Tàu" />
+  <option value="54" text="Bắc Giang" />
+  <option value="53" text="Bắc Kạn" />
+  <option value="55" text="Bạc Liêu" />
+  <option value="56" text="Bắc Ninh" />
+  <option value="50" text="Bến Tre" />
+  <option value="31" text="Bình Định" />
+  <option value="57" text="Bình Dương" />
+  <option value="58" text="Bình Phước" />
+  <option value="40" text="Bình Thuận" />
+  <option value="59" text="Cà Mau" />
+  <option value="04" text="Cao Bằng" />
+  <option value="CT" text="Cần Thơ" />
+  <option value="DN" text="Đà Nẵng" />
+  <option value="33" text="Đắk Lắk" />
+  <option value="72" text="Đắk Nông" />
+  <option value="71" text="Điện Biên" />
+  <option value="39" text="Đồng Nai" />
+  <option value="45" text="Đồng Tháp" />
+  <option value="30" text="Gia Lai" />
+  <option value="03" text="Hà Giang" />
+  <option value="63" text="Hà Nam" />
+  <option value="HN" text="Hà Nội" />
+  <option value="23" text="Hà Tĩnh" />
+  <option value="61" text="Hải Dương" />
+  <option value="HP" text="Hải Phòng" />
+  <option value="73" text="Hậu Giang" />
+  <option value="14" text="Hòa Bình" />
+  <option value="SG" text="Hồ Chí Minh" />
+  <option value="66" text="Hưng Yên" />
+  <option value="34" text="Khánh Hòa" />
+  <option value="47" text="Kiên Giang" />
+  <option value="28" text="Kon Tum" />
+  <option value="01" text="Lai Châu" />
+  <option value="35" text="Lâm Đồng" />
+  <option value="09" text="Lạng Sơn" />
+  <option value="02" text="Lào Cai" />
+  <option value="41" text="Long An" />
+  <option value="67" text="Nam Định" />
+  <option value="22" text="Nghệ An" />
+  <option value="18" text="Ninh Bình" />
+  <option value="36" text="Ninh Thuận" />
+  <option value="68" text="Phú Thọ" />
+  <option value="32" text="Phú Yên" />
+  <option value="24" text="Quảng Bình" />
+  <option value="27" text="Quảng Nam" />
+  <option value="29" text="Quảng Ngãi" />
+  <option value="13" text="Quảng Ninh" />
+  <option value="25" text="Quảng Trị" />
+  <option value="52" text="Sóc Trăng" />
+  <option value="05" text="Sơn La" />
+  <option value="37" text="Tây Ninh" />
+  <option value="20" text="Thái Bình" />
+  <option value="69" text="Thái Nguyên" />
+  <option value="21" text="Thanh Hóa" />
+  <option value="26" text="Thừa Thiên - Huế" />
+  <option value="46" text="Tiền Giang" />
+  <option value="51" text="Trà Vinh" />
+  <option value="07" text="Tuyên Quang" />
+  <option value="49" text="Vĩnh Long" />
+  <option value="70" text="Vĩnh Phúc" />
+  <option value="06" text="Yên Bái" />
+</options>

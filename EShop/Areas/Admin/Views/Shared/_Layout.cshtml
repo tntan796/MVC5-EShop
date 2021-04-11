@@ -1,4 +1,4 @@
-﻿
+﻿@using EShop.Commons; 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -119,6 +119,15 @@
                             </div>
                         </li>
                         <div class="topbar-divider d-none d-sm-block"></div>
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <span class="nav-link dropdown-toggle">
+                                <input type="hidden" value="@Request.RawUrl" />
+                                <select id="ddlLanguage" name="ddlLanguage">
+                                    <option value="vi" selected="(Session[Constants.CURRENT_CULTURE] as string) == 'vi' ? true : false">vi</option>
+                                    <option value="en" selected="(Session[Constants.CURRENT_CULTURE] as string) == 'en' ? true : false">en</option>
+                                </select>
+                            </span>
+                        </li>
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -127,6 +136,7 @@
                                 <img class="img-profile rounded-circle"
                                      src="~/assets/admin/img/undraw_profile.svg">
                             </a>
+
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="userDropdown">

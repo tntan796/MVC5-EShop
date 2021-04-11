@@ -35,5 +35,9 @@ namespace EShop.Models
 
         [Display(Name = "Số điện thoại")]
         public string Phone { set; get; }
+        [Display(Name = "Tỉnh thành")]
+        public string ProvinceID { set; get; }
+        [Display(Name = "Quận huyện")]
+        public string DistrictID { set; get; }
     }
 }

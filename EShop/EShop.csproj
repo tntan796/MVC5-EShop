@@ -166,8 +166,10 @@
     </Compile>
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\CommonObject.cs" />
+    <Compile Include="Models\DistrictModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Payment.cs" />
+    <Compile Include="Models\DVHCModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1933,6 +1935,7 @@
     <Content Include="assets\client\js\main.js" />
     <Content Include="assets\client\js\move-top.js" />
     <Content Include="assets\client\js\popper.min.js" />
+    <Content Include="assets\client\js\register.js" />
     <Content Include="assets\client\js\script.js" />
     <Content Include="assets\client\js\slides.min.jquery.js" />
     <Content Include="assets\client\js\startstop-slider.js" />
@@ -1946,6 +1949,8 @@
     <Content Include="assets\client\libs\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="assets\client\libs\bootstrap\js\bootstrap.js" />
     <Content Include="assets\client\libs\bootstrap\js\bootstrap.min.js" />
+    <Content Include="assets\client\static-data\dvhc_data.xml" />
+    <Content Include="assets\client\static-data\Provinces_data.xml" />
     <Content Include="assets\client\templates\new-order.html" />
     <Content Include="assets\library\ckeditor5-build-classic\ckeditor.js" />
     <Content Include="assets\library\ckeditor5-build-classic\index.html" />
